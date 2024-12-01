@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elevenlabs-app
+  labels:
+    app: elevenlabs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: elevenlabs
+  template:
+    metadata:
+      labels:
+        app: elevenlabs
+    spec:
+      containers:
+      - name: elevenlabs-container
+        image: dmathewtoh/elevenlabs-app:latest
+        ports:
+          - containerPort: 9002
+        envFrom:
+          - secretRef:
+              name: elevenlabs-secret 

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spoonacular-app
+  labels:
+    app: spoonacular
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spoonacular
+  template:
+    metadata:
+      labels:
+        app: spoonacular
+    spec:
+      containers:
+      - name: spoonacular-container
+        image: dmathewtoh/spoonacular-app:latest
+        ports:
+        - containerPort: 9000
+        envFrom:
+        - secretRef:
+            name: spoonacular-secret
