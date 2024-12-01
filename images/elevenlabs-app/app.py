@@ -5,7 +5,7 @@ import json
 import os
 
 app = Flask(__name__)
-client = ElevenLabs(api_key="sk_b2e2c442be7ea3a1c27b2e666c4dbba64bb6cb45edea3824")
+client = ElevenLabs(api_key=os.getenv("ELEVENLABS_API_KEY", "").strip())
 
 @app.route('/', methods=['POST'])
 def textToSpeech():

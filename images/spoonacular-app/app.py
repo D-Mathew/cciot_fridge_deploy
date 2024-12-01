@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 SPOONACULAR_API_KEY = os.getenv('SPOONACULAR_API_KEY')
 
-@app.route('/recipe', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_recipe():
     ingredients = request.args.get('ingredients')
     if not ingredients:
