@@ -21,3 +21,6 @@ docker build -t $DOCKER_REPO/elevenlabs-app:latest ../images/elevenlabs-app
 docker push $DOCKER_REPO/elevenlabs-app:latest
 
 echo "All Docker images built and pushed successfully!"
+
+echo "Deleting Untagged Images..."
+docker rmi $(docker images | grep "<none>" | awk '{print $3}')

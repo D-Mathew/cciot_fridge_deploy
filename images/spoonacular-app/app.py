@@ -4,7 +4,7 @@ import requests
 
 app = Flask(__name__)
 
-SPOONACULAR_API_KEY = os.getenv('SPOONACULAR_API_KEY')
+SPOONACULAR_API_KEY = os.getenv('SPOONACULAR_API_KEY', "").strip()
 
 @app.route('/', methods=['GET'])
 def get_recipe():

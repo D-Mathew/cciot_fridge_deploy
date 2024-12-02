@@ -3,9 +3,11 @@ from elevenlabs import ElevenLabs
 from flask import Flask, request, jsonify, send_file
 import json
 import os
+import subprocess
 
 app = Flask(__name__)
 client = ElevenLabs(api_key=os.getenv("ELEVENLABS_API_KEY", "").strip())
+print(dir(client.generate))
 
 @app.route('/', methods=['POST'])
 def textToSpeech():
@@ -28,8 +30,12 @@ def textToSpeech():
             with open('output_audio.mp3', 'wb') as audiofile:
                 for chunk in audio:
                     audiofile.write(chunk)
+                    
+            subprocess.run([
+                "ffmpeg", "-i", "output_audio.mp3", "-ar", "44100", "-ac", "2", "-sample_fmt", "s16", "output_audio_44100Hz_16bit.wav"
+            ])
 
-            return send_file('output_audio.mp3', as_attachment=True)
+            return send_file('output_audio_44100Hz_16bit.wav', as_attachment=True)
         else:
             return jsonify({"message": "Content-Type Not Supported"}), 406
     except Exception as err:

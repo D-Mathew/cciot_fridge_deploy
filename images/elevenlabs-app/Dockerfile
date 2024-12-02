@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-RUN apt update && apt install -y curl && apt clean 
+RUN apt update && apt install -y curl && install -y ffmpeg && apt clean 
 
 # Set Working Directory
 WORKDIR /app

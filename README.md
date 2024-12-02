@@ -13,4 +13,4 @@
 ```curl -X POST <ip>:<port>/ -F "file=@<filename>"```
 
 ### ElevenLabs TTS
-```curl -X POST <ip>:<port>/ -H "Content-Type: application/json" -d "{'text': 'Hello, Welcome to my application'}" -o output_audio.mp3```
+```curl -X POST <ip>:<port>/ -H "Content-Type: application/json" -d "{'text': 'Hello, Welcome to my application'}" -o output_audio.wav```
